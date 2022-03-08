@@ -1,6 +1,6 @@
 opencv-python
 face_recognition
 numpy
-PIL
+pillow
 datetime
 pandas
