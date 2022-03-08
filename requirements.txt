@@ -1,0 +1,8 @@
+opencv-python
+os
+sys
+face_recognition
+numpy
+PIL
+datetime
+pandas
