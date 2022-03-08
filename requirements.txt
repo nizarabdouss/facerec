@@ -1,5 +1,4 @@
 opencv-python
-sys
 face_recognition
 numpy
 PIL
