@@ -24,8 +24,9 @@ while True:
         if name == "Unknown":
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 200), 4)
             print(type(frame))
-            temp = collect.Person(frame)
+            temp = collect.Person(frame) 
             print(temp.get_name(), temp.date_recorded())
+            temp.create_person()
             '''
             data = im.fromarray(frame)
             data.save(f'faces/face.jpeg')
