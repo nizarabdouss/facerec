@@ -14,14 +14,15 @@ import imagehash
     
 class Person():
     found: datetime.date
-    def __init__(self, frame: np.ndarray) -> None:
-        self._encoding = self.image_encode(frame)
+    def __init__(self, curr_person: np.ndarray) -> None:
+        self._encoding = self.image_encode(curr_person)
         self.found = datetime.date.today()
 
     def image_encode(self, frame):
         data = im.fromarray(frame)
         data = imagehash.average_hash(data)
         print(data)
+        print("\n")
         return data
 
     
