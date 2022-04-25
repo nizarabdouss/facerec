@@ -16,19 +16,17 @@ class Verify():
         return data
 
     def existence(self) -> bool:
-        possible = self.get_hashes()
-        return self.get_closest_hash(possible) != ""
+        return self.get_closest_hash(self.get_hashes())
 
     def get_hashes(self) -> list[any]:
         allMatches = []
         hash = open("src/test.txt", "r")
         for hashes in hash:
-            allMatches.append(hashes)
+            allMatches.append(hashes.strip())
         allMatches = self.increase_prob(allMatches)
         return allMatches
 
     def get_existance(self):
-        #print(self.existence())
         return self.existence()
 
     def increase_prob(self, prob) -> list[any]:
@@ -43,6 +41,7 @@ class Verify():
                     breaks += 1
             if count >= 4 and breaks <= 12:
                 final.append(c)
+        print(final)
         return final
 
     def get_closest_hash(self, hashes: list[any]):
@@ -74,7 +73,8 @@ class Verify():
             if score[1] > greatest:
                 greatest = score[1]
                 closest = score[0]
-
         return closest
+
+    
         
                         

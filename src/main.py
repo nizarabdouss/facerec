@@ -9,13 +9,14 @@ import collect
 import time
 import getFace
 import verification as v
+import process
 
 #Encode Known faces
 sfr = SimpleFacerec()
 sfr.load_encoding_images("src/faces/")
 #Load camera
 cap =  cv2.VideoCapture(0)
-
+Q = process.Queue()
 
 while True:
     ret, frame  = cap.read()
@@ -24,16 +25,8 @@ while True:
     face_locations, face_names = sfr.detect_known_faces(frame)
     new_frame = getFace.FaceExtract(frame).get_frames()
     for faces in new_frame:
-        x1, y1, x2, y2 = faces[0], faces[1], faces[2]+faces[0], faces[3]+faces[1]
-        currFace = frame[y1:y1 + x2-x1, x1:x1 + y2-y1]
-        verify = v.Verify(currFace).get_existance()
-        print(verify)
-        if not verify:
-            print(1)
-            temp = collect.Person(currFace)
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 200), 4)
-        else:
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 200, 0), 4)
+        Q.enqueue(faces)
+    Q.worker(frame)
     
 
     """

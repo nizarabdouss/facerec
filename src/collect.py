@@ -21,8 +21,10 @@ class Person():
     def image_encode(self, frame):
         data = im.fromarray(frame)
         data = imagehash.average_hash(data)
-        print(data)
-        print("\n")
+        f = open("src/test.txt", "a")
+        f.write(str(data))
+        f.write("\n")
+        f.close()
         return data
 
     
