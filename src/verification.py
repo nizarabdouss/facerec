@@ -35,11 +35,13 @@ class Verify():
         final = []
         for c in prob:
             count = 0
+            breaks = 0
             for i in range(len(c)):
                 if c[i] == str(self._curr_face)[i]:
                     count += 1
-                
-            if count >= 3:
+                else:
+                    breaks += 1
+            if count >= 4 and breaks <= 12:
                 final.append(c)
         return final
 
