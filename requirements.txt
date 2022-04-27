@@ -4,3 +4,4 @@ numpy
 pillow
 datetime
 pandas
+imagehash
