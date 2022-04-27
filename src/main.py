@@ -10,6 +10,7 @@ import time
 import getFace
 import verification as v
 import process
+from nodes import LinkedList, _Node
 
 #Encode Known faces
 sfr = SimpleFacerec()
@@ -17,6 +18,8 @@ sfr.load_encoding_images("src/faces/")
 #Load camera
 cap =  cv2.VideoCapture(0)
 Q = process.Queue()
+L = LinkedList("Genesis")
+
 
 while True:
     ret, frame  = cap.read()
@@ -24,7 +27,8 @@ while True:
     #detect faces
     face_locations, face_names = sfr.detect_known_faces(frame)
     new_frame = getFace.FaceExtract(frame).get_frames()
-    for faces in new_frame:
+
+    for faces, eyes in new_frame:
         Q.enqueue(faces)
     Q.worker(frame)
     

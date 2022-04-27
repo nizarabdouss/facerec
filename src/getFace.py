@@ -15,11 +15,17 @@ class FaceExtract():
         eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades +'haarcascade_eye.xml')
         for (x, y, w, h) in faces:
             eyes = eye_cascade.detectMultiScale(gray, 1.1, 4)
-            for (ex,ey,ew,eh) in eyes:
-                cv2.rectangle(self._frame ,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-            face.append([x, y, w, h])
+            face.append(([x, y, w, h], self.get_eyes(gray)))
         return face
 
     def get_frames(self):
         return self._newframes
 
+    def get_eyes(self, gray) -> list[tuple]:
+        eye_loc = []
+        eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades +'haarcascade_eye.xml')
+        eyes = eye_cascade.detectMultiScale(gray, 1.1, 4)
+        for (ex,ey,ew,eh) in eyes:
+            cv2.rectangle(self._frame ,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+            eye_loc.append()
+        

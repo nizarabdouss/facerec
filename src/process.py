@@ -31,6 +31,9 @@ class Queue:
             else:
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 200, 0), 4)
     
+    def node(self) -> None:
+        pass 
 
+    
 
 
